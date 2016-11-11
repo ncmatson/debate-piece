@@ -7,11 +7,11 @@ if os.path.isfile('./transcripts/transcript_1.txt'):
 else:
     scrape.getData()
 
-#read in the first paragraph (each paragraph in the file takes up 1 line)
-f = open('./transcripts/transcript_1.txt')
-line = f.readline()
-print type(line)
-print line
-line = line.split()
-print type(line)
-print line
+# #read in the first paragraph (each paragraph in the file takes up 1 line)
+# f = open('./transcripts/transcript_1.txt')
+# line = f.readline()
+# print type(line)
+# print line
+# line = line.split()
+# print type(line)
+# print line
