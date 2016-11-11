@@ -9,12 +9,12 @@ def getData():
 
     body = tree.xpath('//article/p/text()')
 
-    return body
+    f = open('./transcripts/transcript_1.txt', 'w');
 
-    f = open('transcript_1.txt', 'w');
-    body = getData()
     for p in body:
         f.write(p)
         f.write("\n")
 
     f.close()
+
+    return
