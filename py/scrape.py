@@ -1,3 +1,4 @@
+#! /usr/bin/python
 from lxml import html
 import requests
 
@@ -15,7 +16,7 @@ def getData():
 
 
         path = "debate_"+str(num)
-        f = open('./transcripts/'+path, 'w');
+        f = open('../transcripts/'+path, 'w');
 
         for p in body:
             line = p+"\n"

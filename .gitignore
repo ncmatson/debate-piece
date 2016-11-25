@@ -1,3 +1,6 @@
 .DS_store
 transcripts/
 *.pyc
+__pycache__/
+bin/
+data/
