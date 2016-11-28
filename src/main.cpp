@@ -56,10 +56,18 @@ void readFrequencies(std::ifstream& file, std::map<std::string, int>& words, std
   }
 }
 
-void writeOut(std::map<std::string, int> words, std::ofstream& ofile) {
+void writeFrequecies(std::map<std::string, int> words, std::ofstream& ofile) {
   ofile<<"word,freq\n";
   for (auto it = words.begin(); it != words.end(); ++it) {
     ofile<<it->first<<","<<it->second<<"\n";
+  }
+}
+
+void writeSpeakers(std::vector<std::string> speaker, std::ofstream& ofile) {
+  if(ofile){
+    for (auto it = speaker.begin(); it != speaker.end(); ++it){
+      ofile<<*it<<"\n";
+    }
   }
 }
 
@@ -96,11 +104,27 @@ void splitSpeakers(std::ifstream& file, std::vector<std::string>& clinton,
   }
 }
 
+void writeWordLengths(std::ofstream& ofile, std::ifstream& ifile, std::string speaker) {
+  if (ifile) {
+    std::string word;
+    while (ifile >> word) {
+      if (word == speaker) {
+        ofile << "-1;\n";
+      }
+      else {
+        ofile << word.length() << ";\n";
+      }
+    }
+  }
+}
+
 std::vector<std::string> sw;
 
 int main(){
-  std::ifstream file("transcripts/debate_3");
-  std::ofstream ofile("data/debate_3.csv");
+  std::ifstream ifile("data/1/holt.txt");
+  //std::ofstream ofile("data/debate_1.csv");
+
+  std::ofstream ofile("data/1/word_lengths/holt");
 
   std::map< std::string, int > words;
 
@@ -110,13 +134,14 @@ int main(){
 
   makeStopWords("misc/stopwords", sw);
 
-  // splitSpeakers(file, clinton, trump, other);
-  // for (auto it = other.begin(); it != other.end(); ++it){
-  //   std::cout<<*it<<std::endl;
-  // }
+  //splitSpeakers(file, clinton, trump, other);
 
-  readFrequencies(file, words, sw);
+  //writeSpeakers(words, ofile);
 
-  writeOut(words, ofile);
+  //readFrequencies(file, words, sw);
+
+  //writeFrequencies(words, ofile);
+
+  //writeWordLengths(ofile, ifile, "HOLT:");
 
 }
