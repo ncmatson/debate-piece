@@ -3,8 +3,8 @@
 #include <vector>
 #include <map>
 
-void makeStopWords(std::string SWFile, std::vector<std::string> &list) {
-  std::ifstream file(SWFile);
+void makeWordList(std::string WordFile, std::vector<std::string> &list) {
+  std::ifstream file(WordFile);
   if (file) {
     std::string stopword;
     while (file>>stopword) {
@@ -118,13 +118,34 @@ void writeWordLengths(std::ofstream& ofile, std::ifstream& ifile, std::string sp
   }
 }
 
+void writeKeyWords(std::ofstream& ofile, std::vector<std::string> speaker, std::vector<std::string> keyWords) {
+  if (ofile) {
+    for (auto i = speaker.begin(); i != speaker.end(); ++i) {
+      int j;
+      for (j = 0; j < keyWords.size(); j++) {
+        if (*i == keyWords[j]) {
+          std::cout<<*i<<std::endl;
+          break;
+        }
+      }
+      if (j == keyWords.size()) {
+        ofile << "-1;\n";
+      }
+      else {
+        ofile << j << ";\n";
+      }
+    }
+  }
+}
+
 std::vector<std::string> sw;
+std::vector<std::string> keyWords;
 
 int main(){
-  std::ifstream ifile("data/1/holt.txt");
+  std::ifstream ifile("transcripts/debate_1");
   //std::ofstream ofile("data/debate_1.csv");
 
-  std::ofstream ofile("data/1/word_lengths/holt");
+  std::ofstream ofile("data/1/word_lengths/clinton_KEY");
 
   std::map< std::string, int > words;
 
@@ -132,9 +153,13 @@ int main(){
   std::vector<std::string> clinton;
   std::vector<std::string> other;
 
-  makeStopWords("misc/stopwords", sw);
+  makeWordList("misc/clintonKeyWords", keyWords);
 
-  //splitSpeakers(file, clinton, trump, other);
+  splitSpeakers(ifile, clinton, trump, other);
+
+  std::cout<<clinton.size();
+
+  writeKeyWords(ofile, clinton, keyWords);
 
   //writeSpeakers(words, ofile);
 
