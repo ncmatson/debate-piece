@@ -124,7 +124,6 @@ void writeKeyWords(std::ofstream& ofile, std::vector<std::string> speaker, std::
       int j;
       for (j = 0; j < keyWords.size(); j++) {
         if (*i == keyWords[j]) {
-          std::cout<<*i<<std::endl;
           break;
         }
       }
@@ -142,10 +141,10 @@ std::vector<std::string> sw;
 std::vector<std::string> keyWords;
 
 int main(){
-  std::ifstream ifile("transcripts/debate_1");
+  std::ifstream ifile("data/1/holt.txt");
   //std::ofstream ofile("data/debate_1.csv");
 
-  std::ofstream ofile("data/1/word_lengths/clinton_KEY");
+  std::ofstream ofile("data/1/word_lengths/holt");
 
   std::map< std::string, int > words;
 
@@ -153,13 +152,11 @@ int main(){
   std::vector<std::string> clinton;
   std::vector<std::string> other;
 
-  makeWordList("misc/clintonKeyWords", keyWords);
+  //makeWordList("misc/ClintonKeyWords", keyWords);
 
-  splitSpeakers(ifile, clinton, trump, other);
+  //splitSpeakers(ifile, clinton, trump, other);
 
-  std::cout<<clinton.size();
-
-  writeKeyWords(ofile, clinton, keyWords);
+  //writeKeyWords(ofile, clinton, keyWords);
 
   //writeSpeakers(words, ofile);
 

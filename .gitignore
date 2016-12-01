@@ -4,3 +4,4 @@ transcripts/
 __pycache__/
 bin/
 data/
+audio
