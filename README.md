@@ -1,1 +1,4 @@
-This will be the data acquisition and pre-processing for a sonification of the presidential debates
+#Debate-Piece
+
+This is a sonification piece intended for real-time performance.  The source material comes from the transcript of the
+first presidential debate between Donald Trump and Hillary Clinton.
